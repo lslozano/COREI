@@ -1,5 +1,6 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
+//import { withRouter, Redirect } from 'react-router-dom'
 import {
   Flex,
   Menu,
@@ -21,15 +22,15 @@ function Navbar({ history }) {
             pos="fixed"
             top={0}
             zIndex="99"
-            backgroundColor="white"
+            backgroundColor="black"
             w="100vw"
             h="10vh"
             p={8}
             align="center"
             justify="space-between"
           >
-            <Text fontSize="xl" fontWeight="bolder" onClick={() => go('/')}>
-              COREI
+            <Text fontSize="xl" fontWeight="bolder" color="white" onClick={() => go('/')}>
+              <a href="/">COREI</a>
             </Text>
             <Menu>
               <MenuButton
@@ -39,13 +40,14 @@ function Navbar({ history }) {
                 aria-label="Menu"
                 size="lg"
                 icon="menu"
+                backgroundColor="white"
               ></MenuButton>
-              <MenuList>
+              <MenuList backgroundColor="white">
                 {!context.state.isLogged && (
                   <>
-                    <MenuItem onClick={() => go('/')}>Inicio</MenuItem>
-                    <MenuItem onClick={() => go('/login')}>Iniciar sesión</MenuItem>
-                    <MenuItem onClick={() => go('/signup')}>Registro</MenuItem>
+                    <MenuItem color="black" onClick={() => go('/')}>Inicio</MenuItem>
+                    <MenuItem color="black" onClick={() => go('/login')}>Inicia sesión</MenuItem>
+                    <MenuItem color="black" onClick={() => go('/signup')}>Regístrate</MenuItem>
                   </>
                 )}
                 {context.state.isLogged && (

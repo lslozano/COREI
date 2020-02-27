@@ -30,42 +30,6 @@ const customTheme = {
   icons: {
     ...theme.icons,
     ...customIcons
-  },
-  colors: {
-    ...theme.colors,
-    hotpink: {
-      '100': '#ff3465',
-      '200': '#ff3465',
-      '300': '#ff3465',
-      '400': '#ff3465',
-      '500': '#ff3465',
-      '600': '#ff3465',
-      '700': '#ff3465',
-      '800': '#ff3465',
-      '900': '#ff3465'
-    },
-    softpink: {
-      '100': '#ffdbe3',
-      '200': '#ffdbe3',
-      '300': '#ffdbe3',
-      '400': '#ffdbe3',
-      '500': '#ffdbe3',
-      '600': '#ffdbe3',
-      '700': '#ffdbe3',
-      '800': '#ffdbe3',
-      '900': '#ffdbe3'
-    },
-    whity: {
-      '100': 'white',
-      '200': 'white',
-      '300': 'white',
-      '400': 'white',
-      '500': 'white',
-      '600': 'white',
-      '700': 'white',
-      '800': 'white',
-      '900': 'white'
-    }
   }
 }
 export default customTheme

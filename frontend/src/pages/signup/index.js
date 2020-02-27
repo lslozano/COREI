@@ -48,7 +48,7 @@ export default function Signup({ history }) {
             align="center"
             justify="center"
           >
-            <Form submit={submit} bgColor="white" title="Signup">
+            <Form submit={submit} bgColor="white" title="Registrate">
               <FormControl isRequired>
                 <InputGroup>
                   <InputLeftAddon children={<Icon name="user" />} />

@@ -7,38 +7,39 @@ import {
   Flex
 } from '@chakra-ui/core'
 import { MyContext } from '../context'
-function Footer({ history }) {
-  const go = path => history.push(path)
+import { Link } from 'react-router-dom'
+
+function Footer() {
   return (
     <MyContext.Consumer>
     {context => {
         return (
         <Flex
-            pos="fixed"
             bottom={0}
             zIndex="99"
             textAlign="center"
             backgroundColor="#000"
             w="100vw"
-            h="20vh"
-            p={8}
             justify="center"
+            direction="column"
         >
-                <Breadcrumb separator=" " spacing={3}>
-                <BreadcrumbItem >
-                    <BreadcrumbLink color="white" href="/">Inicio</BreadcrumbLink>
-                </BreadcrumbItem>
-                <BreadcrumbItem>
-                    <BreadcrumbLink href="/about">Privacidad</BreadcrumbLink>
-                </BreadcrumbItem>
-                <BreadcrumbItem isCurrentPage>
-                    <BreadcrumbLink href="/contact">Contacto</BreadcrumbLink>
-                </BreadcrumbItem>
-                <br></br>
-                <BreadcrumbItem>
-                        <BreadcrumbLink href="/about">Terminos y Condiciones</BreadcrumbLink>
-                    </BreadcrumbItem>
-                </Breadcrumb>
+          <Breadcrumb>
+            <BreadcrumbItem color="white">
+              <BreadcrumbLink as={Link} to="/info/about">
+                Acerca de
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbItem color="white">
+              <BreadcrumbLink as={Link} to="/info/privacy">
+                Privacidad
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbItem color="white">
+            <BreadcrumbLink as={Link} to="/info/terms">
+                Terminos y Condiciones
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+          </Breadcrumb>
         </Flex>
         )       
     }}

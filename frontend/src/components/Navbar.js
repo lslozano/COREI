@@ -1,6 +1,5 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
-//import { withRouter, Redirect } from 'react-router-dom'
 import {
   Flex,
   Menu,
@@ -11,6 +10,7 @@ import {
   IconButton
 } from '@chakra-ui/core'
 import { MyContext } from '../context'
+import { Link } from 'react-router-dom'
 
 function Navbar({ history }) {
   const go = path => history.push(path)
@@ -29,8 +29,8 @@ function Navbar({ history }) {
             align="center"
             justify="space-between"
           >
-            <Text fontSize="xl" fontWeight="bolder" color="white" onClick={() => go('/')}>
-              <a href="/">COREI</a>
+            <Text fontSize="xl" fontWeight="bolder" color="white" as={Link} to="/">
+              COREI
             </Text>
             <Menu>
               <MenuButton

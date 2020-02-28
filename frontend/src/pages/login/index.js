@@ -10,6 +10,7 @@ import {
 } from '@chakra-ui/core'
 import { MyContext } from '../../context'
 import Form from '../../components/Form'
+
 export default function Login({ history }) {
   const toast = useToast()
   const context = useContext(MyContext)

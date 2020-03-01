@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Stack, Button, Heading } from '@chakra-ui/core'
+import { Box, Stack, Button, Heading, Text } from '@chakra-ui/core'
 function Form({ width, children, title, submit, bgColor }) {
   return (
     <Box
@@ -13,13 +13,13 @@ function Form({ width, children, title, submit, bgColor }) {
         <Heading textAlign="center" as="h1">
           {title}
         </Heading>
-        {children}
+          {children}
         <Button
-          backgroundColor="hotpink.100"
-          variantColor="hotpink"
+          backgroundColor="#000"
+          color="#FFF"
           type="submit"
         >
-          {title}
+        <Text>Confirmar</Text>
         </Button>
       </Stack>
     </Box>

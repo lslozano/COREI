@@ -9,6 +9,8 @@ import {
   Image
 } from '@chakra-ui/core'
 import { MyContext } from '../../context'
+import { Link } from 'react-router-dom'
+
 
 function Home({ history }) {
   const go = path => history.push(path)
@@ -50,11 +52,14 @@ function Home({ history }) {
           {!context.state.isLogged && (
           <>
           <Stack spacing={8} mt="5vh" mr="5vw" mb="3vh" ml="5vw" align="center">
-          <Box p={5} shadow="md" borderWidth="1px" flex="1" rounded="md" onClick={() => go('/signup')}>
-            <Heading fontSize="md">Rentar o Comprar</Heading>
+          <Box p={5} shadow="md" borderWidth="1px" flex="1" rounded="md">
+            <Heading fontSize="md" as={Link} to='/login'>Rentar</Heading>
           </Box>
-          <Box p={5} shadow="md" borderWidth="1px" flex="1" rounded="md" onClick={() => go('/signup')}>
-            <Heading fontSize="md">Publicitar</Heading>
+          <Box p={5} shadow="md" borderWidth="1px" flex="1" rounded="md">
+            <Heading fontSize="md" as={Link} to='/login'>Comprar</Heading>
+          </Box>
+          <Box p={5} shadow="md" borderWidth="1px" flex="1" rounded="md">
+            <Heading fontSize="md" as={Link} to='/login'>Publicitar</Heading>
           </Box>
           </Stack>
           </>
@@ -62,11 +67,14 @@ function Home({ history }) {
           {context.state.isLogged && (
           <>
           <Stack spacing={8} mt="5vh" mr="5vw" mb="3vh" ml="5vw" align="center">
-          <Box p={5} shadow="md" borderWidth="1px" flex="1" rounded="md" onClick={() => go('/profile')}>
-            <Heading fontSize="md">Rentar o Comprar</Heading>
+          <Box p={5} shadow="md" borderWidth="1px" flex="1" rounded="md">
+            <Heading fontSize="md" as={Link} to='/rentar'>Rentar</Heading>
           </Box>
-          <Box p={5} shadow="md" borderWidth="1px" flex="1" rounded="md" onClick={() => go('/profile')}>
-            <Heading fontSize="md">Publicitar</Heading>
+          <Box p={5} shadow="md" borderWidth="1px" flex="1" rounded="md">
+            <Heading fontSize="md" as={Link} to='/comprar'>Comprar</Heading>
+          </Box>
+          <Box p={5} shadow="md" borderWidth="1px" flex="1" rounded="md">
+            <Heading fontSize="md" as={Link} to='/publicar'>Publicitar</Heading>
           </Box>
           </Stack>
           </>
@@ -134,7 +142,7 @@ function Home({ history }) {
             mt="3vh"
             mb="3vh"
             color="#2D3748"
-          >Podrás entrar en contacto directo con la persona propietaria del inmueble.</Text>
+          >Podrás entrar en contacto directo con la persona que publicitó el inmueble.</Text>
         </Box>
       </Stack>
     </React.Fragment>

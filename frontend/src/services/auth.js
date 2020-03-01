@@ -21,6 +21,11 @@ const AUTH_SERVICE = {
   LOGOUT: async () => {
     const { data } = await service.get('/logout')
     return data
+  },
+  CREATE: async property => {
+    const { data } = await service.post('/publicar', property)
+    return data
   }
 }
+
 export default AUTH_SERVICE

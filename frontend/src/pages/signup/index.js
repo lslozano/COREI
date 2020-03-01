@@ -10,6 +10,7 @@ import {
 } from '@chakra-ui/core'
 import { MyContext } from '../../context'
 import Form from '../../components/Form'
+
 export default function Signup({ history }) {
   const toast = useToast()
   const context = useContext(MyContext)
@@ -18,8 +19,8 @@ export default function Signup({ history }) {
       .handleSignupSubmit(e)
       .then(response => {
         toast({
-          title: 'Account created.',
-          description: "Tu cuenta se ha creado",
+          title: 'Cuenta creada.',
+          description: "Tu cuenta se ha creado.",
           status: 'success',
           duration: 9000,
           isClosable: true
@@ -28,7 +29,7 @@ export default function Signup({ history }) {
       })
       .catch(err => {
         toast({
-          title: 'Algo salio muy mal',
+          title: 'Algo salio muy mal.',
           description: 'La cuenta no ha podido ser registrada.',
           status: 'error',
           duration: 9000,
@@ -42,7 +43,6 @@ export default function Signup({ history }) {
         return (
           <Flex
             mt="10vh"
-            backgroundColor="softpink.100"
             w="100vw"
             h="90vh"
             align="center"

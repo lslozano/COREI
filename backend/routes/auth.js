@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/User');
-// Require 2do modelo
+const Property = require('../models/Property');
+// Require 3er modelo
 const passport = require('../config/passport');
 const uploadCloud = require('../config/cloudinary')
 
@@ -19,13 +20,13 @@ router.post('/login', passport.authenticate('local'), (req, res, next) => {
   res.status(200).json({ user });
 });
 
-// Al utilizar esta routa, por medio del middleware te redirige a home
+// Al utilizar esta ruta, por medio del middleware te redirige a home
 router.get('/logout', (req, res, next) => {
   req.logout();
   res.status(200).json({ msg: 'Logged out' });
 });
 
-// Ruta de perfil en donde debes estar logeado/autentificado para acceder
+// Ruta de perfil en donde debes estar loggeado/autentificado para acceder
 router.get('/profile', isAuth, (req, res, next) => {
   User.findById(req.user._id)
 //    .populate(segundo modelo)
@@ -34,15 +35,67 @@ router.get('/profile', isAuth, (req, res, next) => {
 });
 
 //Upload Routes/auths linea 43
+router.post(
+  '/upload',
+  isAuth,
+  uploadCloud.single('imageURL'),
+  async (req, res, next) => {
+    const { secure_url } = req.file
+    const user = await User.findByIdAndUpdate(
+      req.user._id,
+      { photoURL: secure_url },
+      { new: true }
+    )
+    res.status(200).json({ user })
+  }
+)
 
-//Create Routes/auths linea 57
+router.post('/create', isAuth, async (req, res, next) => {
+  const { name, imageURL,description } = req.body
+  const { _id } = req.user
+  const property = await Property.create({ name, imageURL, description })
+  const propertyPopulated = await Property.findById(property._id).populate('author')
+  const user = await User.findByIdAndUpdate(
+    _id,
+    { $push: { properties: property._id } },
+    { new: true }
+  ).populate({
+    path: 'property',
+    populate: {
+      path: 'author',
+      model: 'User'
+    }
+  })
+  return res.status(201).json({ user, property: propertyPopulated })
+})
 
-//Read Routes/auths linea 76
+router.get('/property', async (req, res, next) => {
+  const properties = await Property.find()
+    .sort({ createdAt: -1 })
+  res.status(200).json({ properties })
+})
 
-//Delete pero tu investgale
+router.get('/properties/:id', async (req, res, next) => {
+  const {id} = req.params;
+  const property = await Property.findById(id)
+  res.status(200).json(property)
+})
+router.patch('/cards/:id', async(req, res, next) => {
+  const {id} = req.params
+  const {name,description} = req.body
+  await Property.findByIdAndUpdate(id, {
+    name, description, 
+  })
+  res.status(200).json({message: "property update"})
+})
 
-function isAuth(req, res, next) {
-  req.isAuthenticated() ? next() : res.status(401).json({ msg: 'Log in first' });
-}
+router.delete('/property/:id', async(req, res, next) => {
+  const {id} = req.params
+  await Property.findByIdAndDelete(id)
+  res.status(200).json({ message: "Property delete"})
+})
 
 module.exports = router;
+  function isAuth(req, res, next) {
+    req.isAuthenticated() ? next() : res.status(401).json({ msg: 'Log in first' });
+  }

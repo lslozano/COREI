@@ -19,6 +19,8 @@ class MyProvider extends Component {
     isLogged: false
   }
 
+
+
   handleLogout = async () => {
     await AUTH_SERVICE.LOGOUT()
     this.props.history.push('/')
@@ -37,6 +39,9 @@ class MyProvider extends Component {
     formSignup[name] = value
     this.setState({ formSignup })
   }
+
+
+
   //Esta función destructura de el estado la form para poder acceder a
   //a sus key value pairs.
   //Destructuramos la key y su valor de element y con . target lo 
@@ -57,9 +62,11 @@ class MyProvider extends Component {
   handleSignupSubmit = async e => {
     e.preventDefault()
     const form = this.state.formSignup
-    this.setState({ formSignup: { name: '', email: '', password: '' } })
+    this.setState({ formSignup: { name: '', email: '', password: ''}})
     return await AUTH_SERVICE.SIGNUP(form)
   }
+
+
 //
   handleLoginSubmit = e => {
     e.preventDefault()
@@ -100,11 +107,15 @@ class MyProvider extends Component {
           handleLoginInput,
           handleLoginSubmit,
           handleLogout
-        }}
+      }}
       >
         {this.props.children}
       </MyContext.Provider>
     )
   }
 }
+
 export default withRouter(MyProvider)
+
+
+

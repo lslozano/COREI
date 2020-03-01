@@ -36,7 +36,6 @@ function Navbar({ history }) {
               <MenuButton
                 as={IconButton}
                 variant="outline"
-                variantColor="whity"
                 aria-label="Menu"
                 size="lg"
                 icon="menu"
@@ -54,6 +53,10 @@ function Navbar({ history }) {
                   <>
                     <MenuItem onClick={() => go('/')}>Inicio</MenuItem>
                     <MenuItem onClick={() => go('/profile')}>Perfil</MenuItem>
+                    <MenuItem onClick={() => go('/config')}>Configuración</MenuItem>
+                    <MenuItem onClick={() => go('/rentar')}>Rentar</MenuItem>
+                    <MenuItem onClick={() => go('/comprar')}>Comprar</MenuItem>
+                    <MenuItem onClick={() => go('/publicar')}>Públicar</MenuItem>
                     <MenuItem onClick={context.handleLogout}>Cerrar sesión</MenuItem>
                   </>
                 )}

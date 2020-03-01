@@ -6,9 +6,11 @@ import {
   InputLeftAddon,
   Input,
   Icon,
-  useToast
+  useToast,
+  Text
 } from '@chakra-ui/core'
 import { MyContext } from '../../context'
+import { Link } from 'react-router-dom'
 import Form from '../../components/Form'
 
 export default function Login({ history }) {
@@ -39,8 +41,9 @@ export default function Login({ history }) {
             h="90vh"
             align="center"
             justify="center"
+            direction="column"
           >
-            <Form submit={submit} bgColor="white" title="Login">
+            <Form submit={submit} bgColor="white" title="Inicia sesión">
               <FormControl isRequired>
                 <InputGroup>
                   <InputLeftAddon children={<Icon name="email" />} />
@@ -66,6 +69,7 @@ export default function Login({ history }) {
                 </InputGroup>
               </FormControl>
             </Form>
+            <Text mt="5vh" as={Link} to="/signup">Aún no tienes cuenta? Registrate aquí.</Text>
           </Flex>
         )
       }}

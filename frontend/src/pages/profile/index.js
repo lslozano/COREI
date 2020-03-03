@@ -40,7 +40,7 @@ export default function Profile({ history }) {
                       <Heading fontSize="md">Comprar</Heading>
                     </Box>
                     <Box p={5} shadow="md" borderWidth="1px" flex="1" rounded="md" as={Link} to='/publicar'>
-                      <Heading fontSize="md">Publicitar</Heading>
+                      <Heading fontSize="md">Publicar</Heading>
                     </Box>
                   </Stack>
                 </Box>

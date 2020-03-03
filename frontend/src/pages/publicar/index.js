@@ -33,7 +33,7 @@ function Publicar({ history }) {
           duration: 9000,
           isClosable: true
         })
-        history.push('/publicar')
+        history.push('/profile')
       })
       .catch(err => {
         toast({
@@ -75,14 +75,14 @@ function Publicar({ history }) {
               <FormControl isRequired>
                 <InputGroup>
                   <InputLeftAddon children={<Icon name="minus" />} />
-                  <Input
-                    placeholder="Renta o Venta"
-                    name="direction"
-                    type="text"
-                    defaultValue={context.state.formPublicar.direction}
-                    onChange={context.handlePublicarInput}
-                  />
-                </InputGroup>
+                    <Input
+                      placeholder="Renta o Venta"
+                      name="type"
+                      type="text"
+                      defaultValue={context.state.formPublicar.type}
+                      onChange={context.handlePublicarInput}
+                    />
+                  </InputGroup>
               </FormControl>
               <FormControl isRequired>
                 <InputGroup>
@@ -100,11 +100,34 @@ function Publicar({ history }) {
                 <InputGroup>
                   <InputLeftAddon children={<Icon name="minus" />} />
                   <Input
-                    placeholder="Price"
+                    placeholder="Dirección"
+                    name="direction"
+                    type="text"
+                    defaultValue={context.state.formPublicar.direction}
+                    onChange={context.handlePublicarInput}
+                  />
+                </InputGroup>
+              </FormControl>
+              <FormControl isRequired>
+                <InputGroup>
+                  <InputLeftAddon children={<Icon name="minus" />} />
+                  <Input
+                    placeholder="Precio"
                     name="price"
                     type="text"
                     defaultValue={context.state.formPublicar.price}
                     onChange={context.handlePublicarInput}
+                  />
+                </InputGroup>
+              </FormControl>
+              <FormControl isRequired>
+                <InputGroup>
+                  <InputLeftAddon children={<Icon name="minus" />} />
+                    <Input
+                      placeholder="Imagen"
+                      name="imageURL"
+                      type="file"
+                      onChange={context.uploadImage}
                   />
                 </InputGroup>
               </FormControl>
@@ -118,3 +141,7 @@ function Publicar({ history }) {
 }
 
 export default Publicar
+
+
+
+

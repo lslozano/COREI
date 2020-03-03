@@ -1,12 +1,29 @@
-import React from 'react';
-import { Stack, Heading, Box, Image } from '@chakra-ui/core'
+import React from 'react'
+import { 
+  Box,
+  Stack,
+  Heading,
+  Flex
+} from '@chakra-ui/core'
 
 function NotFound() {
   return (
-    <div>
-      <h2>Not found</h2>
-    </div>
-  );
+    <Flex
+    mt="10vh"
+    w="100vw"
+    h="90vh"
+    align="center"
+    justify="center"
+    >
+    <Box>
+      <Stack spacing={8} p={8}>
+        <Heading textAlign="center" as="h1">
+          Esta no es la página que estás buscando.
+        </Heading>
+      </Stack>
+    </Box>
+    </Flex>
+  )
 }
 
 export default NotFound;

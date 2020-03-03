@@ -9,6 +9,7 @@ const baseURL = 'http://localhost:3000'
 
 const service = axios.create({ withCredentials: true, baseURL });
 
+
 const AUTH_SERVICE = {
   SIGNUP: async form => {
     const { data } = await service.post('/signup', form)
@@ -26,10 +27,16 @@ const AUTH_SERVICE = {
     const { data } = await service.post('/publicar', form)
     return data
   },
-  uploadPhoto: async photo => {
+  UPLOADPHOTO: async photo => {
     return await service.post('/upload', photo)
+  },
+  uploadImage: async image => {
+    return await service.post('/uploadImage', image)
+  },
+  getAllProjects: async () => {
+    const { data } = await service.get()
+    return data
   }
-
 }
 
 export default AUTH_SERVICE

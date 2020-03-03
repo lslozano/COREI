@@ -50,12 +50,37 @@ router.post(
   }
 )
 
+router.post(
+  '/uploadImage',
+  isAuth,
+  uploadCloud.single('imageURL'),
+  async (req, res, next) => {
+    const { secure_url } = req.file
+    const property = await Property.findByIdAndUpdate(
+      req.property._id,
+      { imageURL: secure_url },
+      { new: true }
+    )
+    res.status(200).json({ property })
+  }
+)
+
+/*
+router.post(
+  '/imgInmueble',
+  isAuth,
+  uploadCloud.single('imageURL'),
+  async (req, res, next) => {
+    const { secure_url } = req.file
+  }
+)
+*/
+
 router.post('/publicar', isAuth, async (req, res, next) => {
-  //Destructurar y pasar todos los elementos del modelo para que los pueda recibir
-  const { name, imageURL, description } = req.body
+  const { imageURL, type, description, direction, price } = req.body
   const { _id } = req.user
-  const property = await Property.create({ name, imageURL, description, author: _id })
-  const propertyPopulated = await Property.findById(property._id).populate('author')
+  const property = await Property.create({ imageURL, type, description, direction, price, owner: _id })
+  const propertyPopulated = await Property.findById(property._id).populate('owner')
   const user = await User.findByIdAndUpdate(
     _id,
     { $push: { properties: property._id } },
@@ -76,22 +101,23 @@ router.get('/property', async (req, res, next) => {
   res.status(200).json({ properties })
 })
 
-router.get('/properties/:id', async (req, res, next) => {
-  const {id} = req.params;
+router.get('/property/:id', async (req, res, next) => {
+  const { id } = req.params;
   const property = await Property.findById(id)
   res.status(200).json(property)
 })
-router.patch('/cards/:id', async(req, res, next) => {
-  const {id} = req.params
-  const {name,description} = req.body
+
+router.patch('/property/:id', async(req, res, next) => {
+  const { id } = req.params
+  const { imageURL, type, description, direction, price } = req.body
   await Property.findByIdAndUpdate(id, {
-    name, description, 
+    imageURL, type, description, direction, price
   })
   res.status(200).json({message: "property update"})
 })
 
 router.delete('/property/:id', async(req, res, next) => {
-  const {id} = req.params
+  const { id } = req.params
   await Property.findByIdAndDelete(id)
   res.status(200).json({ message: "Property delete"})
 })

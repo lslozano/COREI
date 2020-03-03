@@ -1,11 +1,12 @@
 const { Schema, model } = require('mongoose');
 const propertySchema = new Schema (
 {
-    imageURL: String,
-    direction: String,
-    description: String,
-    price: Number,
-    author: {
+    imageURL: '',
+    type: '',
+    description: '',
+    direction: '',
+    price: '',
+    owner: {
       type: Schema.Types.ObjectId,
       ref: 'User'
     }

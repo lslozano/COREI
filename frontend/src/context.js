@@ -16,24 +16,15 @@ class MyProvider extends Component {
       password: ''
     },
     formPublicar: {
-      direction: 'direction',
-      description: 'desc',
-      price: 0
-      /*
-      author: {
-        type: Schema.Types.ObjectId,
-        ref: 'User'
-      }*/
+      imageURL: '',
+      type: '',
+      description: '',
+      direction: '',
+      price: ''
     },
     loggedUser: null,
     isLogged: false
   }
-
-
-
-  
-
-
 
   handleLogout = async () => {
     await AUTH_SERVICE.LOGOUT()
@@ -98,21 +89,35 @@ class MyProvider extends Component {
 
   handlePublicarSubmit = async e => {
     e.preventDefault()
-   
     return await AUTH_SERVICE.CREATE(this.state.formPublicar)
   }
 
   uploadPhoto = e => {
     const formPhoto = new FormData()
     formPhoto.append('photoURL', e.target.files[0])
-    AUTH_SERVICE.uploadPhoto(formPhoto)
+    AUTH_SERVICE.UPLOADPHOTO(formPhoto)
       .then(({ data }) => {
         this.setState({ loggedUser: data.user })
       })
       .catch(err => {
-        console.log(err)
+        //console.log(err)
+        return err
       })
   }
+
+  uploadImage = e => {
+    const formImage = new FormData()
+    formImage.append('imageURL', e.target.files[0])
+    AUTH_SERVICE.uploadImage(formImage)
+      .then(({ data }) => {
+        this.setState({ property: data.property })
+      })
+      .catch(err => {
+        //console.log(err)
+        return err
+      })
+  }
+
 
 //
   handleLoginSubmit = e => {
@@ -146,6 +151,7 @@ class MyProvider extends Component {
       handleLoginSubmit,
       handleLogout,
       uploadPhoto,
+      uploadImage,
       handlePublicarInput,
       handlePublicarSubmit
     } = this
@@ -159,6 +165,7 @@ class MyProvider extends Component {
           handleLoginSubmit,
           handleLogout,
           uploadPhoto,
+          uploadImage,
           handlePublicarInput,
           handlePublicarSubmit
       }}

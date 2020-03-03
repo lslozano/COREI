@@ -5,7 +5,7 @@ export default function CardProfile({ user, history }) {
   return (
     <Box
       p={5}
-      w="350px"
+      w="100vw"
       mt="10vh"
     >
       <Stack spacing={1}>

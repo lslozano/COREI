@@ -38,7 +38,7 @@ router.get('/profile', isAuth, (req, res, next) => {
 router.post(
   '/upload',
   isAuth,
-  uploadCloud.single('imageURL'),
+  uploadCloud.single('photoURL'),
   async (req, res, next) => {
     const { secure_url } = req.file
     const user = await User.findByIdAndUpdate(
@@ -50,10 +50,11 @@ router.post(
   }
 )
 
-router.post('/create', isAuth, async (req, res, next) => {
-  const { name, imageURL,description } = req.body
+router.post('/publicar', isAuth, async (req, res, next) => {
+  //Destructurar y pasar todos los elementos del modelo para que los pueda recibir
+  const { name, imageURL, description } = req.body
   const { _id } = req.user
-  const property = await Property.create({ name, imageURL, description })
+  const property = await Property.create({ name, imageURL, description, author: _id })
   const propertyPopulated = await Property.findById(property._id).populate('author')
   const user = await User.findByIdAndUpdate(
     _id,

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Stack, Heading, Box, Image } from '@chakra-ui/core'
 
 function NotFound() {
   return (

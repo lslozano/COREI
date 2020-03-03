@@ -15,9 +15,23 @@ class MyProvider extends Component {
       email: '',
       password: ''
     },
+    formPublicar: {
+      direction: 'direction',
+      description: 'desc',
+      price: 0
+      /*
+      author: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+      }*/
+    },
     loggedUser: null,
     isLogged: false
   }
+
+
+
+  
 
 
 
@@ -66,6 +80,39 @@ class MyProvider extends Component {
     return await AUTH_SERVICE.SIGNUP(form)
   }
 
+  handlePublicarInput =  e => {
+    /*const { formPublicar } = this.state
+    const { name, value } = e.target
+    formPublicar[name] = value
+    this.setState({ formPublicar })
+    console.log('lel')*/
+    const {name, value} = e.target
+    this.setState(prevstate => ({
+      ...prevstate,
+      formPublicar: {
+        ...prevstate.formPublicar,
+        [name]:value
+      }
+    }))
+  }
+
+  handlePublicarSubmit = async e => {
+    e.preventDefault()
+   
+    return await AUTH_SERVICE.CREATE(this.state.formPublicar)
+  }
+
+  uploadPhoto = e => {
+    const formPhoto = new FormData()
+    formPhoto.append('photoURL', e.target.files[0])
+    AUTH_SERVICE.uploadPhoto(formPhoto)
+      .then(({ data }) => {
+        this.setState({ loggedUser: data.user })
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
 
 //
   handleLoginSubmit = e => {
@@ -89,6 +136,7 @@ class MyProvider extends Component {
       })
       .finally(() => this.setState({ formLogin: { email: '', password: '' } }))
   }
+
   render() {
     const {
       state,
@@ -96,7 +144,10 @@ class MyProvider extends Component {
       handleSignupSubmit,
       handleLoginInput,
       handleLoginSubmit,
-      handleLogout
+      handleLogout,
+      uploadPhoto,
+      handlePublicarInput,
+      handlePublicarSubmit
     } = this
     return (
       <MyContext.Provider
@@ -106,7 +157,10 @@ class MyProvider extends Component {
           handleSignupSubmit,
           handleLoginInput,
           handleLoginSubmit,
-          handleLogout
+          handleLogout,
+          uploadPhoto,
+          handlePublicarInput,
+          handlePublicarSubmit
       }}
       >
         {this.props.children}

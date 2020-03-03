@@ -18,7 +18,8 @@ export default function Config({ history }) {
   return (
     <MyContext.Consumer>
       {context => {
-        const { isLogged, loggedUser } = context.state
+        const { isLogged } = context.state
+//        const { isLogged, loggedUser } = context.state
         if (isLogged)
           return (
             <React.Fragment>
@@ -36,13 +37,14 @@ export default function Config({ history }) {
                   <Stack spacing={8} mt="5vh" mr="5vw" mb="3vh" ml="5vw" align="center">
                     <Box p={5} shadow="md" borderWidth="1px" flex="1" rounded="md">
                       <Text fontSize="md">Actualizar foto de perfil.</Text>
-                      <Input type="file" accept="image/*" multiple = {false} />
-                      <Box>
-                        <Image
+                      <Image
                         rounded="full"
                         backgroundColor="#000"
-                        size="150px"/>
-                      </Box>
+                        size="150px"
+                        src={context.state.loggedUser.photoURL}
+                        alt={context.state.loggedUser.name} 
+                      />
+                      <Input type="file" name="photoURL" onChange={context.uploadPhoto} />
                     </Box>
                   </Stack>
                 </Box>
@@ -54,3 +56,4 @@ export default function Config({ history }) {
     </MyContext.Consumer>
   )
 }
+

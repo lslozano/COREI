@@ -24,14 +24,15 @@ export default function Profile({ history }) {
               <Flex
                 w="100vw"
                 minH="100vh"
-                wrap="wrap"
+                flexWrap="wrap"
+                mt="3vh"
                 direction="column"
-                align="start"
+                align="center"
               >
                 <CardProfile user={loggedUser} history={history} />
                 <Box>
                   <Heading mt="5vh">Que deseas hacer hoy?</Heading>
-                  <Stack spacing={8} mt="5vh" mr="5vw" mb="3vh" ml="5vw" align="center">
+                  <Stack spacing={8} mt="5vh" mr="5vw" mb="3vh" ml="5vw">
                     <Box p={5} shadow="md" borderWidth="1px" flex="1" rounded="md" as={Link} to='/rentar'>
                       <Heading fontSize="md">Rentar</Heading>
                     </Box>

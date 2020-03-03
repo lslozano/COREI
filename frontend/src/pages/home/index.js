@@ -27,7 +27,10 @@ function Home({ history }) {
           textAlign="center"
           w="90vw"
         >
-          <Flex>
+          <Flex
+            justify="center"
+            align="center"
+            >
             <Box>
               <Heading mb={1} size="sm">Publicita y encuentra inmuebles en renta o venta sin intermediarios.</Heading>
               {!context.state.isLogged && (
@@ -89,7 +92,7 @@ function Home({ history }) {
         <Box mt="4vh">
           <Image
             rounded="full"
-            ml="32vw"
+            ml="41vw"
             size="100px"
             src="https://laopinionla.files.wordpress.com/2019/04/shutterstock_140098609.jpg?quality=60&strip=all&w=1200.jpg"
             alt="Casa"
@@ -108,7 +111,7 @@ function Home({ history }) {
         <Box mt="4vh">
           <Image
             rounded="full"
-            ml="30vw"
+            ml="41vw"
             size="115px"
             src="https://www.liderdelemprendimiento.com/wp-content/uploads/2019/07/Comprar-o-rentar-vivienda-en-M%C3%A9xico-3000x1982.png"
             alt="RentaVenta"
@@ -127,7 +130,7 @@ function Home({ history }) {
         <Box mt="4vh">
           <Image
             rounded="full"
-            ml="30vw"
+            ml="41vw"
             size="100px"
             src="https://media.socastsrm.com/wordpress/wp-content/blogs.dir/2163/files/2019/10/handshake.jpeg"
             alt="TratoDirecto"

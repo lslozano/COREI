@@ -22,8 +22,9 @@ function Publicar({ history }) {
     if (!context.state.isLogged) return history.push('/login')
   })
   const submit = e => {
+    e.preventDefault()
     context
-      .handleSignupSubmit(e)
+      .handlePublicarSubmit(e)
       .then(response => {
         toast({
           title: 'Publicación realizada.',
@@ -76,10 +77,10 @@ function Publicar({ history }) {
                   <InputLeftAddon children={<Icon name="minus" />} />
                   <Input
                     placeholder="Renta o Venta"
-                    name="Tipo"
+                    name="direction"
                     type="text"
-                    //value={context.state.formSignup.name}
-                    //onChange={context.handleSignupInput}
+                    defaultValue={context.state.formPublicar.direction}
+                    onChange={context.handlePublicarInput}
                   />
                 </InputGroup>
               </FormControl>
@@ -87,11 +88,11 @@ function Publicar({ history }) {
                 <InputGroup>
                   <InputLeftAddon children={<Icon name="minus" />} />
                   <Input
-                    onChange={context.handleSignupInput}
-                    placeholder="Precio"
-                    name="precio"
+                    placeholder="Descripcion"
+                    name="description"
                     type="text"
-                    //value={context.state.formSignup.email}
+                    defaultValue={context.state.formPublicar.description}
+                    onChange={context.handlePublicarInput}
                   />
                 </InputGroup>
               </FormControl>
@@ -99,23 +100,11 @@ function Publicar({ history }) {
                 <InputGroup>
                   <InputLeftAddon children={<Icon name="minus" />} />
                   <Input
-                    onChange={context.handleSignupInput}
-                    placeholder="Ubicación"
-                    name="ubicación"
+                    placeholder="Price"
+                    name="price"
                     type="text"
-                    //value={context.state.formSignup.password}
-                  />
-                </InputGroup>
-              </FormControl>
-              <FormControl isRequired>
-                <InputGroup>
-                  <InputLeftAddon children={<Icon name="minus" />} />
-                  <Input
-                    onChange={context.handleSignupInput}
-                    placeholder="Características"
-                    name="características"
-                    type="text"
-                    //value={context.state.formSignup.password}
+                    defaultValue={context.state.formPublicar.price}
+                    onChange={context.handlePublicarInput}
                   />
                 </InputGroup>
               </FormControl>

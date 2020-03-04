@@ -44,11 +44,6 @@ router.post(
   }
 )
 
-
-
-
-
-
 router.post(
   '/uploadImage',
   isAuth,
@@ -110,7 +105,10 @@ router.delete('/property/:id', async(req, res, next) => {
   res.status(200).json({ message: "Property delete"})
 })
 
+
 module.exports = router;
   function isAuth(req, res, next) {
     req.isAuthenticated() ? next() : res.status(401).json({ msg: 'Log in first' });
   }
+
+

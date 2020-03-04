@@ -137,6 +137,14 @@ class MyProvider extends Component {
       })
   }
 
+  componentDidMount = async () => {
+    let { properties } = await AUTH_SERVICE.getAllProperties()
+    this.setState(prevstate => ({
+      ...prevstate,
+      properties: properties
+    }))
+  }
+
 
 //
   handleLoginSubmit = e => {

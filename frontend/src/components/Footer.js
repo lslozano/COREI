@@ -21,6 +21,7 @@ function Footer() {
             backgroundColor="#000"
             w="100vw"
             justify="center"
+            pos="block"
         >
           <Breadcrumb>
             <BreadcrumbItem color="white">

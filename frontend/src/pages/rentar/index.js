@@ -9,10 +9,6 @@ import {
   SimpleGrid
 } from '@chakra-ui/core'
 import { MyContext } from '../../context'
-/*
-import AUTH_SERVICE from '../../services/auth'
-import PropertyList from '../../components/PropertyList'
-*/
 
 function Rentar({ history }) {
   
@@ -28,6 +24,7 @@ function Rentar({ history }) {
       {context => {
         return (
         <React.Fragment>
+
           <Stack
             mt="15vh"
             ml="5vw"
@@ -35,10 +32,13 @@ function Rentar({ history }) {
             backgroundColor="white"
             textAlign="center"
             w="90vw"
-            flex="wrap"
+            minH="90vh"
           >
+
           <Heading mb={1} size="sm">Bienes inmuebles disponibles en renta:</Heading>
+
           <Flex>
+
             <SimpleGrid
               columns={[1, 2, 3]}
               spacing={10}
@@ -47,6 +47,7 @@ function Rentar({ history }) {
             >
               {context.state.properties.map(property => 
                 property.type === "Renta" && (
+
               <Box 
                 key={property._id} 
                 maxW="sm" 
@@ -64,9 +65,11 @@ function Rentar({ history }) {
                 <Box p="6" >
 
                   <Box d="flex" alignItems="baseline">
+
                     <Badge rounded="full" px="2" variantColor="teal">
                       New
                     </Badge>
+
                     <Box
                       color="gray.500"
                       fontWeight="semibold"
@@ -77,6 +80,7 @@ function Rentar({ history }) {
                     >
                       {property.type}
                     </Box>
+
                   </Box>
 
                   <Box
@@ -114,10 +118,7 @@ function Rentar({ history }) {
                       {property.owner.name}
                   </Box>
 
-
-
                 </Box>
-
               </Box>
               ))}
             </SimpleGrid>
@@ -131,40 +132,3 @@ function Rentar({ history }) {
 }
 
 export default Rentar
-
-/*
-<Stack>
-        {context.state.property.properties.map((property,index) => < Link   key={index} href={`rentas/${property.id}`}><PropertyCard key={property.id} type={property.type.type} image={property.imageURL} description={property.description} direction={property.direction}/></Link>)}
-          <Box maxW="sm" borderWidth="1px" rounded="lg" overflow="hidden">
-            <Image src={property.imageURL} alt={property.imageURL} />
-           <Box
-            mt="1"
-            fontWeight="semibold"
-            as="h4"
-            lineHeight="tight"
-            isTruncated
-            >
-          {property.type}
-            </Box>
-            <Box
-            mt="1"
-            fontWeight="semibold"
-            as="h4"
-            lineHeight="tight"
-            isTruncated
-          >
-          {property.description}
-            </Box>
-            <Box>
-            {property.price}
-            <Box as="span" color="gray.600" fontSize="sm">
-          </Box>
-          </Box>
-          </Box>
-        </Stack>
-
-
-
-
-
-*/

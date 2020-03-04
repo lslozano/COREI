@@ -1,11 +1,8 @@
 import axios from 'axios';
-// let baseURL;
-// process.env.NODE_ENV === 'production'
-//   ? (baseURL = 'here should be your production endpoint')
-//   : (baseURL = 'http://localhost:3000');
-
-//REVISAR MENSAJE
-const baseURL = 'http://localhost:3000'
+let baseURL;
+process.env.NODE_ENV === 'production'
+  ? (baseURL = 'https://corei.herokuapp.com')
+  : (baseURL = 'http://localhost:3000');
 
 const service = axios.create({ withCredentials: true, baseURL });
 

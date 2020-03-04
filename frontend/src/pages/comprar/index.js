@@ -105,7 +105,7 @@ function Comprar({ history }) {
                   <Box>
                     {property.price}
                     <Box as="span" color="gray.600" fontSize="sm">
-                       / mensual
+                       / M.N.
                     </Box>
                   </Box>
 

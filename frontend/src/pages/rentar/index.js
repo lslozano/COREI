@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react'
+import React, { useEffect, useContext, useState } from 'react'
 import {
   Stack,
   Heading,
@@ -6,13 +6,27 @@ import {
   Flex
 } from '@chakra-ui/core'
 import { MyContext } from '../../context'
-
+import AUTH_SERVICE from '../../services/auth'
 
 function Rentar({ history }) {
   const context = useContext(MyContext)
-  useEffect(() => {
+  const [realstate, setRealState] = useState({})
+
+  const allProperties = () => {
+    let properties
+    AUTH_SERVICE.getAllProperties()
+    .then(res => {
+      properties=res
+      setRealState({properties})
+      console.log(realstate)
+    })
+    .catch(err => console.log(err))
+  }
+  useEffect( () => {
     if (!context.state.isLogged) return history.push('/login')
-  })
+    allProperties()
+  }, [Object.entries(realstate).length])
+
   return (
     <MyContext.Consumer>
       {context => {

@@ -6,9 +6,7 @@ const Property = require('../models/Property');
 const passport = require('../config/passport');
 const uploadCloud = require('../config/cloudinary')
 
-//Ejecuta metodo post, hacia la ruta signup
 router.post('/signup', (req, res, next) => {
-//Manda el formulario para crear el usuario  
   User.register(req.body, req.body.password)
     .then((user) => res.status(201).json({ user }))
     .catch((err) => res.status(500).json({ err }));
@@ -16,17 +14,14 @@ router.post('/signup', (req, res, next) => {
 
 router.post('/login', passport.authenticate('local'), (req, res, next) => {
   const { user } = req;
-  // Para traer otro modelo revisar memes ln 19 routes - auth
   res.status(200).json({ user });
 });
 
-// Al utilizar esta ruta, por medio del middleware te redirige a home
 router.get('/logout', (req, res, next) => {
   req.logout();
   res.status(200).json({ msg: 'Logged out' });
 });
 
-// Ruta de perfil en donde debes estar loggeado/autentificado para acceder
 router.get('/profile', isAuth, (req, res, next) => {
   User.findById(req.user._id)
 //    .populate(segundo modelo)
@@ -34,7 +29,6 @@ router.get('/profile', isAuth, (req, res, next) => {
     .catch((err) => res.status(500).json({ err }));
 });
 
-//Upload Routes/auths linea 43
 router.post(
   '/upload',
   isAuth,
@@ -50,14 +44,18 @@ router.post(
   }
 )
 
+
+
+
+
+
 router.post(
   '/uploadImage',
   isAuth,
   uploadCloud.single('imageURL'),
-  async (req, res, next) => {
+  async (req, res) => {
     const { secure_url } = req.file
     const property = await Property.findByIdAndUpdate(
-      req.property._id,
       { imageURL: secure_url },
       { new: true }
     )
@@ -65,19 +63,9 @@ router.post(
   }
 )
 
-/*
-router.post(
-  '/imgInmueble',
-  isAuth,
-  uploadCloud.single('imageURL'),
-  async (req, res, next) => {
-    const { secure_url } = req.file
-  }
-)
-*/
-
-router.post('/publicar', isAuth, async (req, res, next) => {
-  const { imageURL, type, description, direction, price } = req.body
+router.post('/publicar', isAuth, uploadCloud.single('imageURL'), async (req, res) => {
+  const { type, description, direction, price } = req.body
+  const {secure_url:imageURL} = req.file
   const { _id } = req.user
   const property = await Property.create({ imageURL, type, description, direction, price, owner: _id })
   const propertyPopulated = await Property.findById(property._id).populate('owner')

@@ -22,9 +22,20 @@ class MyProvider extends Component {
       direction: '',
       price: ''
     },
+    
+    property: {
+        imageURL: '',
+        type: '',
+        description: '',
+        direction: '',
+        price: ''
+    },
+    properties: [],
     loggedUser: null,
     isLogged: false
   }
+
+  //Propertysearch()
 
   handleLogout = async () => {
     await AUTH_SERVICE.LOGOUT()
@@ -71,13 +82,9 @@ class MyProvider extends Component {
     return await AUTH_SERVICE.SIGNUP(form)
   }
 
-  handlePublicarInput =  e => {
-    /*const { formPublicar } = this.state
-    const { name, value } = e.target
-    formPublicar[name] = value
-    this.setState({ formPublicar })
-    console.log('lel')*/
-    const {name, value} = e.target
+  handlePublicarInput = e => {
+    let {name, value, type, files } = e.target
+    value = (type === 'file') ? files[0] : value
     this.setState(prevstate => ({
       ...prevstate,
       formPublicar: {
@@ -89,7 +96,21 @@ class MyProvider extends Component {
 
   handlePublicarSubmit = async e => {
     e.preventDefault()
-    return await AUTH_SERVICE.CREATE(this.state.formPublicar)
+    const formData = new FormData()
+    formData.append('imageURL', this.state.formPublicar.imageURL)
+    formData.append('type', this.state.formPublicar.type)
+    formData.append('description', this.state.formPublicar.description)
+    formData.append('direction', this.state.formPublicar.direction)
+    formData.append('price', this.state.formPublicar.price)
+    await AUTH_SERVICE.CREATE(formData)
+    return this.setState({ 
+      formPublicar: {
+        imageURL: '',
+        type: '',
+        description: '',
+        direction: '',
+        price: ''
+    }})
   }
 
   uploadPhoto = e => {
@@ -100,7 +121,6 @@ class MyProvider extends Component {
         this.setState({ loggedUser: data.user })
       })
       .catch(err => {
-        //console.log(err)
         return err
       })
   }
@@ -113,7 +133,6 @@ class MyProvider extends Component {
         this.setState({ property: data.property })
       })
       .catch(err => {
-        //console.log(err)
         return err
       })
   }

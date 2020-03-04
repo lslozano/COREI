@@ -9,7 +9,8 @@ import {
   InputLeftAddon,
   Input,
   Icon,
-  useToast
+  useToast,
+  Select
 } from '@chakra-ui/core'
 import { MyContext } from '../../context'
 import Form from '../../components/Form'
@@ -73,16 +74,13 @@ function Publicar({ history }) {
           >
             <Form submit={submit} bgColor="white" title="Inmueble a publicar">
               <FormControl isRequired>
-                <InputGroup>
-                  <InputLeftAddon children={<Icon name="minus" />} />
-                    <Input
-                      placeholder="Renta o Venta"
-                      name="type"
-                      type="text"
-                      defaultValue={context.state.formPublicar.type}
-                      onChange={context.handlePublicarInput}
-                    />
-                  </InputGroup>
+              <Select 
+                onChange={context.handlePublicarInput}
+                placeholder="Selecciona Renta o Venta"
+                name="type">
+                  <option value="Renta">Renta</option>
+                  <option value="Venta">Venta</option>
+              </Select>
               </FormControl>
               <FormControl isRequired>
                 <InputGroup>
@@ -127,7 +125,8 @@ function Publicar({ history }) {
                       placeholder="Imagen"
                       name="imageURL"
                       type="file"
-                      onChange={context.uploadImage}
+                      defaultValue={context.state.formPublicar.imageURL}
+                      onChange={context.handlePublicarInput}
                   />
                 </InputGroup>
               </FormControl>

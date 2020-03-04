@@ -33,8 +33,8 @@ const AUTH_SERVICE = {
   uploadImage: async image => {
     return await service.post('/uploadImage', image)
   },
-  getAllProjects: async () => {
-    const { data } = await service.get()
+  getAllProperties: async () => {
+    const { data } = await service.get('/property')
     return data
   }
 }

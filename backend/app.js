@@ -50,7 +50,4 @@ const auth = require('./routes/auth');
 app.use('/', index);
 app.use('/', auth);
 
-// Uncomment this line for production o si no entendiste antes de deployar
-// app.get('/*', (req, res) => res.sendFile(__dirname + '/public/index.html'));
-
 module.exports = app;

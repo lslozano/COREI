@@ -10,16 +10,18 @@ import {
   Image
 } from '@chakra-ui/core'
 
-export default function Config({ history }) {
+function Config({ history }) {
+  
   const context = useContext(MyContext)
+
   useEffect(() => {
     if (!context.state.isLogged) return history.push('/login')
   })
+
   return (
     <MyContext.Consumer>
       {context => {
         const { isLogged } = context.state
-//        const { isLogged, loggedUser } = context.state
         if (isLogged)
           return (
             <React.Fragment>
@@ -57,3 +59,4 @@ export default function Config({ history }) {
   )
 }
 
+export default Config

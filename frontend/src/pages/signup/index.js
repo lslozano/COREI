@@ -11,9 +11,11 @@ import {
 import { MyContext } from '../../context'
 import Form from '../../components/Form'
 
-export default function Signup({ history }) {
+function Signup({ history }) {
+
   const toast = useToast()
   const context = useContext(MyContext)
+
   const submit = e => {
     context
       .handleSignupSubmit(e)
@@ -36,7 +38,8 @@ export default function Signup({ history }) {
           isClosable: true
         })
       })
-  }
+    }
+
   return (
     <MyContext.Consumer>
       {context => {
@@ -52,37 +55,37 @@ export default function Signup({ history }) {
               <FormControl isRequired>
                 <InputGroup>
                   <InputLeftAddon children={<Icon name="user" />} />
-                  <Input
-                    placeholder="Nombre"
-                    name="name"
-                    type="text"
-                    value={context.state.formSignup.name}
-                    onChange={context.handleSignupInput}
-                  />
+                    <Input
+                      placeholder="Nombre"
+                      name="name"
+                      type="text"
+                      value={context.state.formSignup.name}
+                      onChange={context.handleSignupInput}
+                    />
                 </InputGroup>
               </FormControl>
               <FormControl isRequired>
                 <InputGroup>
                   <InputLeftAddon children={<Icon name="email" />} />
-                  <Input
-                    onChange={context.handleSignupInput}
-                    placeholder="Email"
-                    name="email"
-                    type="email"
-                    value={context.state.formSignup.email}
-                  />
+                    <Input
+                      onChange={context.handleSignupInput}
+                      placeholder="Email"
+                      name="email"
+                      type="email"
+                      value={context.state.formSignup.email}
+                    />
                 </InputGroup>
               </FormControl>
               <FormControl isRequired>
                 <InputGroup>
                   <InputLeftAddon children={<Icon name="lock" />} />
-                  <Input
-                    onChange={context.handleSignupInput}
-                    placeholder="Contraseña"
-                    name="password"
-                    type="password"
-                    value={context.state.formSignup.password}
-                  />
+                    <Input
+                      onChange={context.handleSignupInput}
+                      placeholder="Contraseña"
+                      name="password"
+                      type="password"
+                      value={context.state.formSignup.password}
+                    />
                 </InputGroup>
               </FormControl>
             </Form>
@@ -91,4 +94,7 @@ export default function Signup({ history }) {
       }}
     </MyContext.Consumer>
   )
+  
 }
+
+export default Signup

@@ -9,6 +9,7 @@ import {
 } from '@chakra-ui/core'
 
 function About() {
+
   return (
     <Stack
       mt="15vh"
@@ -34,6 +35,7 @@ function About() {
       </Box>
     </Stack>
   )
+  
 }
 
 export default About

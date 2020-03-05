@@ -9,6 +9,7 @@ import {
 } from '@chakra-ui/core'
 
 function Privacy() {
+
   return (
     <Stack
       mt="15vh"
@@ -56,6 +57,7 @@ function Privacy() {
       </Box>
     </Stack>
   )
+  
 }
 
 export default Privacy

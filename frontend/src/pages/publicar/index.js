@@ -17,11 +17,13 @@ import Form from '../../components/Form'
 
 
 function Publicar({ history }) {
+
   const toast = useToast()
   const context = useContext(MyContext)
   useEffect(() => {
     if (!context.state.isLogged) return history.push('/login')
   })
+
   const submit = e => {
     e.preventDefault()
     context
@@ -46,6 +48,7 @@ function Publicar({ history }) {
         })
       })
   }
+
   return (
     <MyContext.Consumer>
       {context => {
@@ -66,25 +69,26 @@ function Publicar({ history }) {
           </Flex>
         </Stack>
         <Flex
-            mt="10vh"
-            w="100vw"
-            h="90vh"
-            align="center"
-            justify="center"
-          >
-            <Form submit={submit} bgColor="white" title="Inmueble a publicar">
-              <FormControl isRequired>
+          mt="10vh"
+          w="100vw"
+          h="90vh"
+          align="center"
+          justify="center"
+        >
+          <Form submit={submit} bgColor="white" title="Inmueble a publicar">
+            <FormControl isRequired>
               <Select 
                 onChange={context.handlePublicarInput}
                 placeholder="Selecciona Renta o Venta"
-                name="type">
-                  <option value="Renta">Renta</option>
-                  <option value="Venta">Venta</option>
+                name="type"
+              >
+                <option value="Renta">Renta</option>
+                <option value="Venta">Venta</option>
               </Select>
-              </FormControl>
-              <FormControl isRequired>
-                <InputGroup>
-                  <InputLeftAddon children={<Icon name="minus" />} />
+            </FormControl>
+            <FormControl isRequired>
+              <InputGroup>
+                <InputLeftAddon children={<Icon name="minus" />} />
                   <Input
                     placeholder="Descripcion"
                     name="description"
@@ -92,11 +96,11 @@ function Publicar({ history }) {
                     defaultValue={context.state.formPublicar.description}
                     onChange={context.handlePublicarInput}
                   />
-                </InputGroup>
-              </FormControl>
-              <FormControl isRequired>
-                <InputGroup>
-                  <InputLeftAddon children={<Icon name="minus" />} />
+              </InputGroup>
+            </FormControl>
+            <FormControl isRequired>
+              <InputGroup>
+                <InputLeftAddon children={<Icon name="minus" />} />
                   <Input
                     placeholder="Dirección"
                     name="direction"
@@ -104,11 +108,11 @@ function Publicar({ history }) {
                     defaultValue={context.state.formPublicar.direction}
                     onChange={context.handlePublicarInput}
                   />
-                </InputGroup>
-              </FormControl>
-              <FormControl isRequired>
-                <InputGroup>
-                  <InputLeftAddon children={<Icon name="minus" />} />
+              </InputGroup>
+            </FormControl>
+            <FormControl isRequired>
+              <InputGroup>
+                <InputLeftAddon children={<Icon name="minus" />} />
                   <Input
                     placeholder="Precio"
                     name="price"
@@ -116,27 +120,28 @@ function Publicar({ history }) {
                     defaultValue={context.state.formPublicar.price}
                     onChange={context.handlePublicarInput}
                   />
-                </InputGroup>
-              </FormControl>
-              <FormControl isRequired>
-                <InputGroup>
-                  <InputLeftAddon children={<Icon name="minus" />} />
-                    <Input
-                      placeholder="Imagen"
-                      name="imageURL"
-                      type="file"
-                      defaultValue={context.state.formPublicar.imageURL}
-                      onChange={context.handlePublicarInput}
+              </InputGroup>
+            </FormControl>
+            <FormControl isRequired>
+              <InputGroup>
+                <InputLeftAddon children={<Icon name="minus" />} />
+                  <Input
+                    placeholder="Imagen"
+                    name="imageURL"
+                    type="file"
+                    defaultValue={context.state.formPublicar.imageURL}
+                    onChange={context.handlePublicarInput}
                   />
-                </InputGroup>
-              </FormControl>
-            </Form>
-          </Flex>
+              </InputGroup>
+            </FormControl>
+          </Form>
+        </Flex>
       </React.Fragment>
       )
     }}
-    </MyContext.Consumer>
+  </MyContext.Consumer>
   )
+  
 }
 
 export default Publicar

@@ -7,15 +7,18 @@ import {
   Input,
   Icon,
   useToast,
-  Text
+  Text,
+  Button
 } from '@chakra-ui/core'
 import { MyContext } from '../../context'
 import { Link } from 'react-router-dom'
 import Form from '../../components/Form'
 
-export default function Login({ history }) {
+function Login({ history }) {
+
   const toast = useToast()
   const context = useContext(MyContext)
+
   const submit = async e => {
     const { user, msg } = await context.handleLoginSubmit(e)
     if (user) {
@@ -30,6 +33,7 @@ export default function Login({ history }) {
       })
     }
   }
+
   return (
     <MyContext.Consumer>
       {context => {
@@ -47,32 +51,43 @@ export default function Login({ history }) {
               <FormControl isRequired>
                 <InputGroup>
                   <InputLeftAddon children={<Icon name="email" />} />
-                  <Input
-                    onChange={context.handleLoginInput}
-                    placeholder="Email"
-                    name="email"
-                    type="email"
-                    value={context.state.formLogin.email}
-                  />
+                    <Input
+                      onChange={context.handleLoginInput}
+                      placeholder="Email"
+                      name="email"
+                      type="email"
+                      value={context.state.formLogin.email}
+                    />
                 </InputGroup>
               </FormControl>
               <FormControl isRequired>
                 <InputGroup>
                   <InputLeftAddon children={<Icon name="lock" />} />
-                  <Input
-                    onChange={context.handleLoginInput}
-                    placeholder="Contraseña"
-                    name="password"
-                    type="password"
-                    value={context.state.formLogin.password}
-                  />
+                    <Input
+                      onChange={context.handleLoginInput}
+                      placeholder="Contraseña"
+                      name="password"
+                      type="password"
+                      value={context.state.formLogin.password}
+                    />
                 </InputGroup>
               </FormControl>
             </Form>
-            <Text mt="5vh" as={Link} to="/signup">Aún no tienes cuenta? Registrate aquí.</Text>
+            <Button
+              backgroundColor="#000"
+              color="#FFF"
+              as={Link}
+              to="/signup"
+              mt="5vh"
+            >
+              <Text>Aún no tienes cuenta? Registrate aquí.</Text>
+            </Button>
           </Flex>
         )
       }}
     </MyContext.Consumer>
   )
+  
 }
+
+export default Login

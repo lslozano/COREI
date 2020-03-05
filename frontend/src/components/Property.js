@@ -2,9 +2,11 @@ import React, { useContext } from 'react'
 import { Stack, Box, Text, Image, Badge, Flex, Avatar } from '@chakra-ui/core'
 import { MyContext } from '../context'
 
-export default function Property({ property }) {
+function Property({ property }) {
+
   const context = useContext(MyContext)
   const { loggedUser } = context.state
+
   return (
     <Stack
       boxShadow="lg"
@@ -30,4 +32,7 @@ export default function Property({ property }) {
       </Flex>
     </Stack>
   )
+  
 }
+
+export default Property

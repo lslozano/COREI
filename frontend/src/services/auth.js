@@ -2,11 +2,16 @@ import axios from 'axios';
 let baseURL;
 
 process.env.NODE_ENV === 'production'
-  ? (baseURL = 'https://corei.herokuapp.com')
+  ? (baseURL = 'http://localhost:3000')
   : (baseURL = 'http://localhost:3000');
 
-const service = axios.create({ withCredentials: true, baseURL });
+/*
+process.env.NODE_ENV === 'production'
+  ? (baseURL = 'https://corei.herokuapp.com')
+  : (baseURL = 'http://localhost:3000');
+*/
 
+const service = axios.create({ withCredentials: true, baseURL });
 
 const AUTH_SERVICE = {
   SIGNUP: async form => {
@@ -33,6 +38,10 @@ const AUTH_SERVICE = {
   },
   getAllProperties: async () => {
     const { data } = await service.get('/property')
+    return data
+  },
+  getProperty: async () => {
+    const { data } = await service.get('/property/:id')
     return data
   }
 }

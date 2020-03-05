@@ -10,11 +10,12 @@ import { MyContext } from '../context'
 import { Link } from 'react-router-dom'
 
 function Footer() {
+
   return (
     <MyContext.Consumer>
-    {context => {
+      {context => {
         return (
-        <Flex
+          <Flex
             bottom={0}
             zIndex="99"
             textAlign="center"
@@ -22,7 +23,7 @@ function Footer() {
             w="100vw"
             justify="center"
             pos="block"
-        >
+          >
           <Breadcrumb>
             <BreadcrumbItem color="white">
               <BreadcrumbLink as={Link} to="/info/about">
@@ -35,15 +36,17 @@ function Footer() {
               </BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbItem color="white">
-            <BreadcrumbLink as={Link} to="/info/terms">
+              <BreadcrumbLink as={Link} to="/info/terms">
                 Terminos y Condiciones
               </BreadcrumbLink>
             </BreadcrumbItem>
           </Breadcrumb>
         </Flex>
-        )       
+      )       
     }}
     </MyContext.Consumer>
   )
+  
 }
+
 export default withRouter(Footer)

@@ -9,6 +9,7 @@ import {
 } from '@chakra-ui/core'
 
 function Terms() {
+
   return (
     <Stack
       mt="15vh"
@@ -56,6 +57,7 @@ function Terms() {
       </Box>
     </Stack>
   )
+  
 }
 
 export default Terms

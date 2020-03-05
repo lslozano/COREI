@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/User');
 const Property = require('../models/Property');
-// Require 3er modelo
+const Favorites = require('../models/Favorites')
 const passport = require('../config/passport');
 const uploadCloud = require('../config/cloudinary')
 
@@ -24,7 +24,6 @@ router.get('/logout', (req, res, next) => {
 
 router.get('/profile', isAuth, (req, res, next) => {
   User.findById(req.user._id)
-//    .populate(segundo modelo)
     .then((user) => res.status(200).json({ user }))
     .catch((err) => res.status(500).json({ err }));
 });
@@ -105,6 +104,11 @@ router.delete('/property/:id', async(req, res, next) => {
   res.status(200).json({ message: "Property delete"})
 })
 
+router.get('/favorites', async (req, res, next) => {
+  const favorites = await Favorite.find()
+    .sort({ createdAt: -1 })
+  res.status(200).json({ favorites })
+})
 
 module.exports = router;
   function isAuth(req, res, next) {

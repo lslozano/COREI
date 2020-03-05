@@ -35,4 +35,5 @@ export default () => (
     </Switch>
     <Footer/> 
   </BrowserRouter>
-  )
+
+)

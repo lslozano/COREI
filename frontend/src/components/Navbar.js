@@ -13,7 +13,9 @@ import { MyContext } from '../context'
 import { Link } from 'react-router-dom'
 
 function Navbar({ history }) {
+
   const go = path => history.push(path)
+
   return (
     <MyContext.Consumer>
       {context => {
@@ -67,5 +69,7 @@ function Navbar({ history }) {
       }}
     </MyContext.Consumer>
   )
+  
 }
+
 export default withRouter(Navbar)

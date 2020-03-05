@@ -9,6 +9,7 @@ import {
   SimpleGrid
 } from '@chakra-ui/core'
 import { MyContext } from '../../context'
+import AUTH_SERVICE from '../../services/auth'
 
 function Rentar({ history }) {
   
@@ -16,7 +17,7 @@ function Rentar({ history }) {
 
   useEffect(() => {
     if (!context.state.isLogged) return history.push('/login')
-  
+    context.getProperties()
   })
 
   return (

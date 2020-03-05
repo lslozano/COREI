@@ -10,6 +10,7 @@ import Rentar from './pages/rentar'
 import Comprar from './pages/comprar'
 import Publicar from './pages/publicar'
 import Config from './pages/config'
+import Propiedad from './pages/propiedad'
 import About from './pages/info/about'
 import Privacy from './pages/info/privacy'
 import Terms from './pages/info/terms'
@@ -28,6 +29,7 @@ export default () => (
       <Route exact path="/comprar" component={Comprar} />
       <Route exact path="/publicar" component={Publicar} />
       <Route exact path="/config" component={Config} />
+      <Route exact path="/propiedad/:id" component={Propiedad} />
       <Route exact path="/info/about" component={About} />
       <Route exact path="/info/privacy" component={Privacy} /> 
       <Route exact path="/info/terms" component={Terms} />  

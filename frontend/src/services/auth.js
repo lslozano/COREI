@@ -40,8 +40,8 @@ const AUTH_SERVICE = {
     const { data } = await service.get('/property')
     return data
   },
-  getProperty: async () => {
-    const { data } = await service.get('/property/:id')
+  getProperty: async (id) => {
+    const { data } = await service.get('/property/'+id)
     return data
   }
 }

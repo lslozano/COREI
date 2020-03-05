@@ -8,6 +8,7 @@ import {
   Badge,
   SimpleGrid
 } from '@chakra-ui/core'
+import { Link } from 'react-router-dom'
 import { MyContext } from '../../context'
 
 function Rentar({ history }) {
@@ -17,7 +18,7 @@ function Rentar({ history }) {
   useEffect(() => {
     if (!context.state.isLogged) return history.push('/login')
     context.getProperties()
-  })
+  }, [history, context])
 
   return (
     <MyContext.Consumer>
@@ -42,7 +43,7 @@ function Rentar({ history }) {
                 mr="5vw"
               >
               {context.state.properties.map(property => 
-                property.type === "Renta" && (
+                property.type === "Renta" && (  
                 <Box 
                   key={property._id} 
                   maxW="sm" 
@@ -53,7 +54,8 @@ function Rentar({ history }) {
                   mr="5vw" 
                   mb="5vh"
                   ml="5vw"
-                  onClick={context.getProperty()}
+                  as={Link}
+                  to={`/propiedad/${property._id}`}
                 >
                   <Image src={property.imageURL} alt={property.type} />
                   
@@ -97,7 +99,7 @@ function Rentar({ history }) {
                     <Box>
                       {property.price}
                       <Box as="span" color="gray.600" fontSize="sm">
-                        / M.N.
+                        / M.N. mensual.
                       </Box>
                     </Box>
 

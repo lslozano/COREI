@@ -22,13 +22,7 @@ class MyProvider extends Component {
       direction: '',
       price: ''
     },
-    property: {
-        imageURL: '',
-        type: '',
-        description: '',
-        direction: '',
-        price: ''
-    },
+    property: null,
     properties: [],
     loggedUser: null,
     isLogged: false
@@ -154,13 +148,14 @@ class MyProvider extends Component {
       properties: properties
     }))
   }
+  
+  getProperty = async (id) => {
+    this.setProperty( await AUTH_SERVICE.getProperty(id))
+    
+  }
 
-  getProperty = async () => {
-    let { property } = await AUTH_SERVICE.getProperty()
-    this.setState(prevstate => ({
-      ...prevstate,
-      property: property
-    }))
+  setProperty = (property) => {
+    this.setState({property})
   }
 
   render() {
@@ -176,7 +171,8 @@ class MyProvider extends Component {
       handlePublicarInput,
       handlePublicarSubmit,
       getProperties,
-      getProperty
+      getProperty,
+      setProperty
     } = this
     return (
       <MyContext.Provider
@@ -192,7 +188,8 @@ class MyProvider extends Component {
           handlePublicarInput,
           handlePublicarSubmit,
           getProperties,
-          getProperty
+          getProperty,
+          setProperty
         }}
       >
         {this.props.children}

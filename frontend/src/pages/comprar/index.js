@@ -8,6 +8,7 @@ import {
   Badge,
   SimpleGrid
 } from '@chakra-ui/core'
+import { Link } from 'react-router-dom'
 import { MyContext } from '../../context'
 
 function Comprar({ history }) {
@@ -17,7 +18,7 @@ function Comprar({ history }) {
   useEffect(() => {
     if (!context.state.isLogged) return history.push('/login')
     context.getProperties()
-  })
+  }, [history, context])
 
   return (
     <MyContext.Consumer>
@@ -53,6 +54,8 @@ function Comprar({ history }) {
                   mr="5vw" 
                   mb="5vh"
                   ml="5vw"
+                  as={Link}
+                  to={`/propiedad/${property._id}`}
                 >
                   <Image src={property.imageURL} alt={property.type} />
                   
